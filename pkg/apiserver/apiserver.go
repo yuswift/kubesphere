@@ -52,6 +52,7 @@ import (
 	configv1alpha2 "kubesphere.io/kubesphere/pkg/kapis/config/v1alpha2"
 	devopsv1alpha2 "kubesphere.io/kubesphere/pkg/kapis/devops/v1alpha2"
 	devopsv1alpha3 "kubesphere.io/kubesphere/pkg/kapis/devops/v1alpha3"
+	hellokubesphere "kubesphere.io/kubesphere/pkg/kapis/hellokubesphere/v1alpha1"
 	iamapi "kubesphere.io/kubesphere/pkg/kapis/iam/v1alpha2"
 	monitoringv1alpha3 "kubesphere.io/kubesphere/pkg/kapis/monitoring/v1alpha3"
 	notificationv1 "kubesphere.io/kubesphere/pkg/kapis/notification/v1"
@@ -212,6 +213,7 @@ func (s *APIServer) installKubeSphereAPIs() {
 	urlruntime.Must(notificationv1.AddToContainer(s.container, s.Config.NotificationOptions.Endpoint))
 	urlruntime.Must(alertingv1.AddToContainer(s.container, s.Config.AlertingOptions.Endpoint))
 	urlruntime.Must(version.AddToContainer(s.container, s.KubernetesClient.Discovery()))
+	urlruntime.Must(hellokubesphere.AddToContainer(s.container))
 }
 
 func (s *APIServer) Run(stopCh <-chan struct{}) (err error) {
