@@ -1,0 +1,64 @@
+# Default values for ks-core.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  ks_controller_manager_repo: kubepshere/ks-controller
+  ks_apiserver_repo: kubepshere/ks-apiserver
+  ks_kubectl_repo: kubepshere/kubectl
+  nginx_ingress_controller_repo: kubepshere/nginx
+  # Overrides the image tag whose default is the chart appVersion.
+  ks_apiserver_tag: ""
+  ks_controller_manager_tag: ""
+  ks_kubectl_tag: ""
+  nginx_ingress_controller_tag: ""
+  pullPolicy: IfNotPresent
+
+authentication: {}
+
+ks_secret: ""
+multicluster: {}
+console: {}
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "kubesphere"
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+resources:
+  limits:
+    cpu: 1
+    memory: 1024Mi
+  requests:
+    cpu: 20m
+    memory: 100Mi
+
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

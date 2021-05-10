@@ -1,0 +1,25 @@
+apiVersion: v1
+data:
+  kubesphere.yaml: |
+    authentication:
+      authenticateRateLimiterMaxTries: {{ .Values.authentication.authenticateRateLimiterMaxTries | default 10 }}
+      authenticateRateLimiterDuration: {{ .Values.authentication.authenticationRateLimiterDuration | default "10m0s" }}
+      loginHistoryRetentionPeriod: {{ .Values.authentication.loginHistoryRetentionPeriod | default "168h"  }}
+      maximumClockSkew: {{ .Values.authentication.maximumClockSkew | default "10s" }}
+      multipleLogin: {{ .Values.console.enableMultiLogin | default true }}
+      kubectlImage: {{ .Values.image.ks_kubectl_repo }}:{{ .Values.image.ks_kubectl_tag }}
+      jwtSecret: "{{ .Values.ks_secret }}"
+{{- if .Values.authentication.oauthOptions }}
+      {{- with .Values.authentication.oauthOptions }}
+      oauthOptions:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- else if eq (default .Values.multicluster.clusterRole "none") "member" }}
+      oauthOptions:
+        accessTokenMaxAge: 0
+{{- end }}
+
+kind: ConfigMap
+metadata:
+  name: kubesphere-config
+  namespace: kubesphere-system
