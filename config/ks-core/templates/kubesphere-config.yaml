@@ -7,7 +7,7 @@ data:
       loginHistoryRetentionPeriod: {{ .Values.authentication.loginHistoryRetentionPeriod | default "168h"  }}
       maximumClockSkew: {{ .Values.authentication.maximumClockSkew | default "10s" }}
       multipleLogin: {{ .Values.console.enableMultiLogin | default true }}
-      kubectlImage: {{ .Values.image.ks_kubectl_repo }}:{{ .Values.image.ks_kubectl_tag }}
+      kubectlImage: {{ .Values.image.ks_kubectl_repo }}:{{ .Values.image.ks_kubectl_tag | default "latest" }}
       jwtSecret: "{{ .Values.ks_secret }}"
 {{- if .Values.authentication.oauthOptions }}
       {{- with .Values.authentication.oauthOptions }}
@@ -18,6 +18,8 @@ data:
       oauthOptions:
         accessTokenMaxAge: 0
 {{- end }}
+    monitoring:
+      endpoint: {{ .Values.monitoring.endpoint | default "http://prometheus-operated.kubesphere-monitoring-system.svc:9090" }}
 
 kind: ConfigMap
 metadata:

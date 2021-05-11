@@ -7,8 +7,8 @@
 apiVersion: v1
 data:
   ca.crt: {{ b64enc $ca.Cert | quote }}
-  tls.crt: {{ $cert.Cert | quote }}
-  tls.key: {{ $cert.Key | quote }}
+  tls.crt: {{ b64enc  $cert.Cert | quote }}
+  tls.key: {{ b64enc  $cert.Key | quote }}
 kind: Secret
 metadata:
   name: ks-controller-manager-webhook-cert

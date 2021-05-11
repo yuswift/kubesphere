@@ -119,6 +119,7 @@ spec:
             - kubesphere-system
 {{- end }}
 
+---
 
 apiVersion: v1
 kind: Service

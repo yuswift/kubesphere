@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  ks_controller_manager_repo: kubepshere/ks-controller
-  ks_apiserver_repo: kubepshere/ks-apiserver
-  ks_kubectl_repo: kubepshere/kubectl
-  nginx_ingress_controller_repo: kubepshere/nginx
+  ks_controller_manager_repo: kubesphere/ks-controller-manager
+  ks_apiserver_repo: kubesphere/ks-apiserver
+  ks_kubectl_repo: kubesphere/kubectl
+  nginx_ingress_controller_repo: kubesphere/nginx
   # Overrides the image tag whose default is the chart appVersion.
   ks_apiserver_tag: ""
   ks_controller_manager_tag: ""
@@ -18,13 +18,15 @@ image:
 
 authentication: {}
 
-ks_secret: ""
+ks_secret: "KjXw2msUcsRwYoXN8uDG36Enmr3Rdinz"
 multicluster: {}
 console: {}
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
+
+monitoring: {}
 
 serviceAccount:
   # Specifies whether a service account should be created
