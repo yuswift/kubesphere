@@ -17,13 +17,13 @@ spec:
     matchLabels:
       app: ks-apiserver
       tier: backend
-      version: {{ .Chart.AppVersion }}
+      # version: {{ .Chart.AppVersion }}
   template:
     metadata:
       labels:
         app: ks-apiserver
         tier: backend
-        version: {{ .Chart.AppVersion }}
+        # version: {{ .Chart.AppVersion }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -134,5 +134,5 @@ spec:
   selector:
     app: ks-apiserver
     tier: backend
-    version: {{ .Chart.AppVersion }}
+    # version: {{ .Chart.AppVersion }}
   type: ClusterIP
