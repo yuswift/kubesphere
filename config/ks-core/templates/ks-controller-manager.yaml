@@ -45,12 +45,7 @@ spec:
         - containerPort: 8443
           protocol: TCP
         resources:
-          limits:
-            cpu: 1000m
-            memory: 1000Mi
-          requests:
-            cpu: 30m
-            memory: 50Mi
+          {{- toYaml .Values.controllerManagerResources | nindent 12 }}
         volumeMounts:
         - mountPath: /etc/kubesphere/
           name: kubesphere-config
@@ -82,19 +77,10 @@ spec:
             path: /etc/localtime
             type: ""
           name: host-time
+      {{- with .Values.tolerations }}
       tolerations:
-        - key: node-role.kubernetes.io/master
-          effect: NoSchedule
-        - key: CriticalAddonsOnly
-          operator: Exists
-        - effect: NoExecute
-          key: node.kubernetes.io/not-ready
-          operator: Exists
-          tolerationSeconds: 60
-        - effect: NoExecute
-          key: node.kubernetes.io/unreachable
-          operator: Exists
-          tolerationSeconds: 60
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:

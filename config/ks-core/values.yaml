@@ -5,22 +5,41 @@
 replicaCount: 1
 
 image:
-  ks_controller_manager_repo: kubesphere/ks-controller-manager
-  ks_apiserver_repo: kubesphere/ks-apiserver
-  ks_kubectl_repo: kubesphere/kubectl
-  nginx_ingress_controller_repo: kubesphere/nginx
   # Overrides the image tag whose default is the chart appVersion.
-  ks_apiserver_tag: ""
+  ks_controller_manager_repo: kubesphere/ks-controller-manager
   ks_controller_manager_tag: ""
+
+  ks_apiserver_repo: kubesphere/ks-apiserver
+  ks_apiserver_tag: ""
+  ks_console_repo: "kubesphere/ks-console"
+  ks_console_tag: ""
+
+  ks_kubectl_repo: kubesphere/kubectl
   ks_kubectl_tag: ""
+
+  nginx_ingress_controller_repo: kubesphere/nginx
   nginx_ingress_controller_tag: ""
+
+  bookinfo_productpage_v1_repo: kubesphere/nginx
+  bookinfo_productpage_v1_tag: "latest"
+
+  bookinfo_reviews_v1_repo: kubesphere/nginx
+  bookinfo_reviews_v1_tag: "latest"
+
+  bookinfo_details_v1_repo: kubesphere/nginx
+  bookinfo_details_v1_tag: "latest"
+
+  bookinfo_ratings_v1_repo: kubesphere/nginx
+  bookinfo_ratings_v1_tag: "latest"
+
   pullPolicy: IfNotPresent
 
 authentication: {}
 
 ks_secret: "KjXw2msUcsRwYoXN8uDG36Enmr3Rdinz"
 multicluster: {}
-console: {}
+console:
+  port: 30880
 
 imagePullSecrets: []
 nameOverride: ""
@@ -50,7 +69,7 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-resources:
+apiserverResources:
   limits:
     cpu: 1
     memory: 1024Mi
@@ -58,9 +77,36 @@ resources:
     cpu: 20m
     memory: 100Mi
 
+consoleResources:
+  limits:
+    cpu: 1
+    memory: 1024Mi
+  requests:
+    cpu: 20m
+    memory: 100Mi
 
-nodeSelector: {}
+controllerManagerResources:
+  limits:
+    cpu: 1
+    memory: 1000Mi
+  requests:
+    cpu: 30m
+    memory: 50Mi
 
-tolerations: []
+kube_version: "v1.19.4"
+
+tolerations: 
+  - key: node-role.kubernetes.io/master
+    effect: NoSchedule
+  - key: CriticalAddonsOnly
+    operator: Exists
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 60
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 60
 
 affinity: {}
