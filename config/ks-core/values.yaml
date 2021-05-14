@@ -18,6 +18,8 @@ image:
 
   nginx_ingress_controller_repo: kubesphere/nginx
   nginx_ingress_controller_tag: ""
+  defaultbackend_repo: "mirrorgooglecontainers/defaultbackend-amd64"
+  defaultbackend_tag: "1.4"
 
   bookinfo_productpage_v1_repo: kubesphere/nginx
   bookinfo_productpage_v1_tag: "latest"
