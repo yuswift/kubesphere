@@ -19,7 +19,7 @@ data:
     client:
       version:
         kubesphere: {{ .Chart.AppVersion }}
-        kubernetes: {{ .Values.image.kube_version }}
+        kubernetes: {{ .Values.kube_version }}
         openpitrix: {{ .Chart.AppVersion }}
       enableKubeConfig: true
 kind: ConfigMap

@@ -1,6 +1,5 @@
 # Default values for ks-core.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+
 
 replicaCount: 1
 
@@ -34,18 +33,25 @@ image:
 
   pullPolicy: IfNotPresent
 
-authentication: {}
 
-ks_secret: "KjXw2msUcsRwYoXN8uDG36Enmr3Rdinz"
-multicluster: {}
+config:
+  # Specifies whether a kubesphere-config configmap should be created
+  create: true
+  
+  authentication: {}
+
+  # Jwt Secret is required
+  jwtSecret: "KjXw2msUcsRwYoXN8uDG36Enmr3Rdinz"
+
+  multicluster: {}
+  monitoring: {}
+
 console:
   port: 30880
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-
-monitoring: {}
 
 serviceAccount:
   # Specifies whether a service account should be created
