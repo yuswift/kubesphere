@@ -16,22 +16,22 @@ image:
   ks_kubectl_repo: kubesphere/kubectl
   ks_kubectl_tag: ""
 
-  nginx_ingress_controller_repo: kubesphere/nginx
-  nginx_ingress_controller_tag: ""
+  nginx_ingress_controller_repo: kubesphere/nginx-ingress-controller
+  nginx_ingress_controller_tag: "v0.35.0"
   defaultbackend_repo: "mirrorgooglecontainers/defaultbackend-amd64"
   defaultbackend_tag: "1.4"
 
-  bookinfo_productpage_v1_repo: kubesphere/nginx
-  bookinfo_productpage_v1_tag: "latest"
+  bookinfo_productpage_v1_repo: kubesphere/examples-bookinfo-productpage-v1
+  bookinfo_productpage_v1_tag: "1.16.2"
 
-  bookinfo_reviews_v1_repo: kubesphere/nginx
-  bookinfo_reviews_v1_tag: "latest"
+  bookinfo_reviews_v1_repo: kubesphere/examples-bookinfo-reviews-v1
+  bookinfo_reviews_v1_tag: "1.16.2"
 
-  bookinfo_details_v1_repo: kubesphere/nginx
-  bookinfo_details_v1_tag: "latest"
+  bookinfo_details_v1_repo: kubesphere/examples-bookinfo-details-v1
+  bookinfo_details_v1_tag: "1.16.2"
 
-  bookinfo_ratings_v1_repo: kubesphere/nginx
-  bookinfo_ratings_v1_tag: "latest"
+  bookinfo_ratings_v1_repo: kubesphere/examples-bookinfo-ratings-v1
+  bookinfo_ratings_v1_tag: "1.16.3"
 
   pullPolicy: IfNotPresent
 

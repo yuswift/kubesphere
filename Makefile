@@ -92,7 +92,7 @@ docker-build-no-test: ks-apiserver ks-controller-manager
 
 helm-package:
 	ls config/crds/ | grep -v types.kubefed.io | xargs -i cp -r config/crds/{} config/ks-core/crds/
-	helm package config/ks-core --app-version=3.1.0 --version=0.1.0 -d ./bin
+	helm package config/ks-core --app-version=v3.1.0 --version=0.1.0 -d ./bin
 
 helm-deploy:
 	helm upgrade --install ks-core ./config/ks-core -n kubesphere-system --create-namespace
